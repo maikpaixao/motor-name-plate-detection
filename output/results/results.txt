@@ -1,0 +1,43 @@
+GPU Inference Time: 0.018794373512268068 seconds
+CPU Inference Time: 0.08022568225860596 seconds
+-------- Modelo treinado com a base de treino aumentada (15180 imagens)
+# Treinamento do decoder
+--- Train
+Mean Accuracy: 0.996
+Max IoU: 0.9893932706573679
+Mean IoU: 0.9664951554127683
+Min IoU: 0.8168251393361019
+
+--- Test
+Mean Accuracy: 0.65625
+Max IoU: 0.9833577485992654
+Mean IoU: 0.8598303953380624
+Min IoU: 0.33508739026236906
+
+--- Test replace corrigidas
+Mean Accuracy: 0.75
+Max IoU: 0.9833577485992654
+Mean IoU: 0.9167655702817404
+Min IoU: 0.5065630504592612
+
+# Treinamento do encoder e decoder
+--- Train
+Mean Accuracy: 0.998
+Max IoU: 0.988974989623088
+Mean IoU: 0.9704374746586446
+Min IoU: 0.8907002486352389
+
+--- Test
+Mean Accuracy: 0.65
+Max IoU: 0.9821645512505204
+Mean IoU: 0.8533305468274062
+Min IoU: 0.2840964558987084
+
+--- Test replace corrigidas
+Mean Accuracy: 0.825
+Max IoU: 0.9821645512505204
+Mean IoU: 0.9322549478946429
+Min IoU: 0.7297799689495262
+
+--------
+-------- Modelo treinado com a base de treino aumentada + a base de teste aumentada (19820 imagens)
