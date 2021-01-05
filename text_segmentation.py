@@ -68,6 +68,12 @@ class TextSegmentation():
         # find contours in the mask
         countours = parser_img.find_countours(img_mask)
 
+        if(img.shape[0] > img.shape[1]):
+            size = img.shape[0]
+        else:
+            size = img.shape[1]
+
+        pts = []
         # for each contour
         for c in countours:
 
@@ -80,9 +86,27 @@ class TextSegmentation():
             if (cropped.shape[0] > cropped.shape[1] * 1.5):
                 cropped = parser_img.img_rotate90(cropped)
 
-            text = parser_ocr.extract_text(cropped)
+            peri = cv2.arcLength(c, True)
+            approx = cv2.approxPolyDP(c, 0.03* peri, True)
+            n = approx.ravel() 
+
+            text_list = []
+            if len(approx) == 4:
+                if(cv2.contourArea(c) > 0.7*size + 300):
+                        i = 0
+                        for j in n : 
+                            if(i % 2 == 0): 
+                                x = n[i] 
+                                y = n[i + 1] 
+                                text_list.append([x, y])
+                            i = i + 1
+                        pts.append(text_list)
+            #text = parser_ocr.extract_text(cropped)
+            #text_list.append(text)
+            
 
             #print(text)
             #parser_img.img_show(cropped)
-            parser_img.write_on_image(image, text=text, position=top_left_corner, font_size=60)
-        parser_img.img_write(path_name, image)
+        return pts[0]
+            #parser_img.write_on_image(image, text=text, position=top_left_corner, font_size=60)
+        #parser_img.img_write(path_name, image)

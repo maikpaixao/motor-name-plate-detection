@@ -5,6 +5,9 @@ import natsort
 from tqdm import tqdm
 from pathlib import Path
 
+import warnings
+warnings.filterwarnings("ignore")
+
 def read_images(path):
     directories = list(path.iterdir())
     directories_sorted = []
@@ -27,6 +30,10 @@ if __name__ == '__main__':
         plate = model_plate.detect_plate(img)
         text_mask = model_text.segment_text(plate)
 
-        path_name = 'saved/' + str(img_path)[8:-4] + '.jpg'
-        model_text.extract_text(plate, text_mask, path_name)
+
+        #parser_img.img_show(text_mask)
+        print(model_text.extract_text(plate, text_mask))
+
+        #path_name = 'saved/' + str(img_path)[8:-4] + '.jpg'
+        #model_text.extract_text(plate, text_mask, path_name)
 
